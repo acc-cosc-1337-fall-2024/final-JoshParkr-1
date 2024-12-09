@@ -2,7 +2,7 @@
 #include "die.h"
 
 #ifndef ROLL_H
-#define Roll_H
+#define ROLL_H
 
 class Roll
 {
