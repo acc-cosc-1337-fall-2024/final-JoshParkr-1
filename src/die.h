@@ -10,8 +10,8 @@ public:
     int roll();
 
 private:
-    const int sides {6};
-    
+    int sides = 6;
+
 };
 
 #endif

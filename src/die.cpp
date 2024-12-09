@@ -4,6 +4,6 @@
 
 int Die::roll()
 {
-    int face = rand() % 6 + 1;
+    int face = rand() % sides + 1;
     return face;
 }
