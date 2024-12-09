@@ -4,6 +4,8 @@
 #include "die.h"
 #include "roll.h"
 #include "shooter.h"
+#include "come_out_phase.h"
+#include "point_phase.h"
 
 TEST_CASE("Verify Test Configuration", "verification") {
 	REQUIRE(true == true);
@@ -49,5 +51,21 @@ TEST_CASE("Verify shooter") {
 
 		REQUIRE(2 <= roll->roll_value());
         REQUIRE(12 >= roll->roll_value());
+    }
+}
+
+TEST_CASE("Verify come out phase") {
+    Die die1, die2;
+    ComeOutPhase phase;
+
+
+    }
+}
+
+TEST_CASE("Verify point phase") {
+    Die die1, die2;
+    Shooter shooter;
+
+
     }
 }
