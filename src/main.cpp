@@ -1,20 +1,51 @@
-#include <iostream>
+#include "die.h"
 #include "roll.h"
+#include "shooter.h"
+#include "come_out_phase.h"
+#include "point_phase.h"
 
-using std::cout;
+#include <iostream>
+#include <ctime>
 
+using namespace std;
 
 int main() 
 {
-	Die die1, die2;
-	Roll roll(die1, die2);
+	srand(time(0));
 
-	for(int i = 0; i < 20; i++)
+    Die die1;
+    Die die2;
+    Shooter shooter;
+
+    Roll* roll = shooter.throw_dice(die1, die2);
+    int rolled_value = roll->roll_value();
+
+    ComeOutPhase come_out_phase;
+    while (come_out_phase.get_outcome(roll) == RollOutcome::natural || come_out_phase.get_outcome(roll) == RollOutcome::craps)
 	{
-		cout << die1.roll() << "\n";
-		cout << die2.roll() << "\n";
-		roll.roll_dice();
-		cout << roll.roll_value() << "\n";
-	}
+        cout << "Rolled " << rolled_value << " roll again\n";
+        roll = shooter.throw_dice(die1, die2);
+        rolled_value = roll->roll_value();
+    }
 
+    cout << "Rolled " << rolled_value << " start of point phase\n";
+    cout << "Roll until " << rolled_value << " or 7 is rolled\n";
+
+    int point = rolled_value;
+    roll = shooter.throw_dice(die1, die2);
+
+    PointPhase point_phase(point);
+
+    while (point_phase.get_outcome(roll) != RollOutcome::seven_out && point_phase.get_outcome(roll) != RollOutcome::point)
+	{
+        cout << "Rolled " << roll->roll_value() << " roll again\n";
+        roll = shooter.throw_dice(die1, die2);
+    }
+
+
+    cout << "Rolled " << roll->roll_value() << " end of point phase\n";
+
+    shooter.display_rolled_values();
+
+	return 0;
 }

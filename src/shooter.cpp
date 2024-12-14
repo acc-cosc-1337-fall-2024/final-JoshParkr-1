@@ -19,6 +19,6 @@ Roll* Shooter::throw_dice(Die& die1, Die& die2) {
 void Shooter::display_rolled_values()
 {
     for (const Roll* roll : rolls) {
-        std::cout << "Rolled Value: " << roll->roll_value() << "\n";
+        std::cout << roll->roll_value() << "\n";
     }
 }
