@@ -9,7 +9,7 @@ class Phase {
 
 public:
 
-    virtual RollOutcome get_outcome(Roll* roll) const = 0;
+    virtual RollOutcome get_outcome(Roll* roll) = 0;
 };
 
 #endif

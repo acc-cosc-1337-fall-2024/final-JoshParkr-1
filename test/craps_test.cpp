@@ -54,18 +54,3 @@ TEST_CASE("Verify shooter") {
     }
 }
 
-TEST_CASE("Verify come out phase") {
-    Die die1, die2;
-    ComeOutPhase phase;
-
-
-    }
-}
-
-TEST_CASE("Verify point phase") {
-    Die die1, die2;
-    Shooter shooter;
-
-
-    }
-}
