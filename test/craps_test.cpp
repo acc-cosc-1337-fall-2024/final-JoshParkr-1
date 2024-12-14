@@ -64,7 +64,7 @@ TEST_CASE("Verify ComeOutPhase") {
         roll.roll_dice();
         REQUIRE(true==((RollOutcome::natural == comeout_phase.get_outcome(&roll)) 
 		|| (RollOutcome::craps == comeout_phase.get_outcome(&roll)) 
-		|| (RollOutcome::nopoint == comeout_phase.get_outcome(&roll))));
+		|| (RollOutcome::point == comeout_phase.get_outcome(&roll))));
 	}
 
 }
