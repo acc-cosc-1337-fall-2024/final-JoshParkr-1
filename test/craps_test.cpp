@@ -54,3 +54,46 @@ TEST_CASE("Verify shooter") {
     }
 }
 
+TEST_CASE("Verify ComeOutPhase") {
+    Die die1, die2;
+	Roll roll(die1, die2);
+	ComeOutPhase comeout;
+
+	do{roll.roll_dice();}while(7 != roll.roll_value());
+	REQUIRE(RollOutcome::natural == comeout.get_outcome(&roll));
+
+	do{roll.roll_dice();}while(11 != roll.roll_value());
+	REQUIRE(RollOutcome::natural == comeout.get_outcome(&roll));
+
+	do{roll.roll_dice();}while(2 != roll.roll_value());
+	REQUIRE(RollOutcome::craps == comeout.get_outcome(&roll));
+
+	do{roll.roll_dice();}while(3 != roll.roll_value());
+	REQUIRE(RollOutcome::craps == comeout.get_outcome(&roll));
+
+	do{roll.roll_dice();}while(12 != roll.roll_value());
+	REQUIRE(RollOutcome::craps == comeout.get_outcome(&roll));
+
+	do{roll.roll_dice();}while(0 != roll.roll_value());
+	REQUIRE(RollOutcome::nopoint == comeout.get_outcome(&roll));
+
+    
+}
+
+TEST_CASE("Verify PointPhase") {
+    Die die1, die2;
+	Roll roll(die1, die2);
+	PointPhase pointp(0);
+    
+	do{roll.roll_dice();}while(0 != roll.roll_value());
+	REQUIRE(RollOutcome::point == pointp.get_outcome(&roll));
+
+	do{roll.roll_dice();}while(7 != roll.roll_value());
+	REQUIRE(RollOutcome::seven_out == pointp.get_outcome(&roll));
+
+	do{roll.roll_dice();}while(8 != roll.roll_value());
+	REQUIRE(RollOutcome::nopoint == pointp.get_outcome(&roll));
+
+	do{roll.roll_dice();}while(9 != roll.roll_value());
+	REQUIRE(RollOutcome::nopoint == pointp.get_outcome(&roll));
+}
